@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -27,7 +28,7 @@ public class Course {
 
     private CourseType courseType;
 
-    private LocalDate startDate;
+    private Date startDate;
 
     private String duration;
 

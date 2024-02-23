@@ -3,6 +3,8 @@ package com.anurag.CourseService.util;
 import com.anurag.CourseService.dto.CourseRequestDTO;
 import com.anurag.CourseService.dto.CourseResponseDTO;
 import com.anurag.CourseService.entity.Course;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class AppUtils {
 
@@ -34,5 +36,13 @@ public class AppUtils {
         courseResponseDTO.setCertificationAvailable(course.isCertificationAvailable());
         courseResponseDTO.setDescription(course.getDescription());
         return courseResponseDTO;
+    }
+
+    public static String convertObjectToString(Object object) {
+        try {
+            return new ObjectMapper().writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
