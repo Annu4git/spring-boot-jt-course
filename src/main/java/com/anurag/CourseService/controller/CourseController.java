@@ -5,16 +5,14 @@ import com.anurag.CourseService.dto.CourseResponseDTO;
 import com.anurag.CourseService.dto.ServiceResponse;
 import com.anurag.CourseService.service.CourseService;
 import com.anurag.CourseService.util.AppUtils;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -47,6 +45,7 @@ public class CourseController {
     }
 
     @PostMapping("/addAll")
+    @Tag(name="post")
     public ServiceResponse<?> addAllCourses(@RequestBody @Valid List<CourseRequestDTO> courseList) {
         log.info("Method : addAllCourses, request payload : {}", AppUtils.convertObjectToString(courseList));
         List<CourseResponseDTO> courseResponseDTOList = courseService.addCourses(courseList);
@@ -55,6 +54,7 @@ public class CourseController {
     }
 
     @GetMapping
+    @Tag(name="get")
     public ServiceResponse<?> getCourses() {
         List<CourseResponseDTO> allCourses = courseService.findAllCourses();
         log.info("Method : getCourses, response : {}", AppUtils.convertObjectToString(allCourses));
@@ -78,6 +78,8 @@ public class CourseController {
     }
 
     @DeleteMapping("/{courseId}")
+    @Operation(summary="!!!Delete!!!", description = "description-description-description-description")
+    @Tag(name="delete")
     public ServiceResponse<?> deleteCourseById(@PathVariable int courseId) {
         log.info("Method : deleteCourseById, path variable : {}", courseId);
         courseService.deleteCourse(courseId);
