@@ -5,9 +5,6 @@ import com.anurag.CourseService.dto.CourseResponseDTO;
 import com.anurag.CourseService.dto.ServiceResponse;
 import com.anurag.CourseService.service.CourseService;
 import jakarta.validation.Valid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +15,16 @@ import java.util.List;
 @RequestMapping("/course")
 public class CourseController {
 
-    Logger log = LoggerFactory.getLogger(CourseController.class);
 
-    @Autowired
+//    Removing property based injection
+//    @Autowired
     CourseService courseService;
+
+    // including constructor based injection
+    // Note : Autowired annotation is not required in this case
+    public CourseController(CourseService courseService) {
+        this.courseService = courseService;
+    }
 
     @PostMapping
     public ServiceResponse<CourseResponseDTO> addCourse(@RequestBody @Valid CourseRequestDTO course) {
@@ -80,13 +83,5 @@ public class CourseController {
         return new ServiceResponse<>(HttpStatus.OK, courseService.futureCourses());
     }
 
-    @GetMapping("/log")
-    public String printLogs() {
-        log.error("error msg");
-        log.warn("warn msg");
-        log.info("info msg");
-        log.debug("debug msg");
-        log.trace("trace msg");
-        return "ABC";
-    }
+
 }
