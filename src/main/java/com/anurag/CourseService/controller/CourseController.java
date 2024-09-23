@@ -123,9 +123,5 @@ public class CourseController {
         return "ABC";
     }
 
-    @GetMapping("/home")
-    public String home() {
-        log.info("home");
-        return "Welcome home!";
-    }
+
 }
