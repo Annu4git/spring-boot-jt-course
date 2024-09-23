@@ -33,6 +33,6 @@ public class CourseRequestDTO {
 
     private boolean isCertificationAvailable;
 
-    @NotEmpty(message = "description must not be empty")
+    // @NotEmpty(message = "description must not be empty")
     private String description;
 }
