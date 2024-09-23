@@ -10,5 +10,5 @@ phases:
       - echo Build successful
 artifacts:
   files:
-    - /target/course-service.jar
+    - target/course-service.jar
   discard-paths: yes
