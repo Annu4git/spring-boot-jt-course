@@ -122,4 +122,10 @@ public class CourseController {
         log.trace("trace msg");
         return "ABC";
     }
+
+    @GetMapping("/home")
+    public String home() {
+        log.info("home");
+        return "Welcome home!";
+    }
 }
